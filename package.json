@@ -1,0 +1,19 @@
+{
+  "name": "wpgetter-cli",
+  "version": "1.0.0",
+  "description": "WP Getter CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/wpgetter/wpgetter-cli.git"
+  },
+  "author": "Nabil Kadimi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/wpgetter/wpgetter-cli/issues"
+  },
+  "homepage": "https://gitlab.com/wpgetter/wpgetter-cli#README"
+}
