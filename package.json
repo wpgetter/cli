@@ -4,7 +4,11 @@
   "description": "WP Getter CLI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js"
+  },
+  "bin": {
+    "hello": "cli.js",
+    "hello-list": "cli-list.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,12 @@
   "bugs": {
     "url": "https://gitlab.com/wpgetter/wpgetter-cli/issues"
   },
-  "homepage": "https://gitlab.com/wpgetter/wpgetter-cli#README"
+  "homepage": "https://gitlab.com/wpgetter/wpgetter-cli#README",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "terminal-kit": "^1.13.13"
+  },
+  "devDependencies": {
+    "jscs": "^3.0.7"
+  }
 }
