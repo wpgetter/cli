@@ -4,11 +4,15 @@
   "description": "WP Getter CLI",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/test.js"
+    "test": "gulp test"
   },
   "bin": {
-    "hello": "cli.js",
-    "hello-list": "cli-list.js"
+    "wpgetter": "cli.js",
+    "wpget": "cli.js",
+    "wpgetter-list": "cli-list.js",
+    "wpget-list": "cli-list.js",
+    "wpgetter-reset": "cli-reset.js",
+    "wpget-reset": "cli-reset.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +26,22 @@
   "homepage": "https://gitlab.com/wpgetter/wpgetter-cli#README",
   "dependencies": {
     "commander": "^2.11.0",
+    "del": "^3.0.0",
+    "home-dir": "^1.0.0",
+    "mkdirp-promise": "^5.0.1",
+    "shelljs": "^0.7.8",
     "terminal-kit": "^1.13.13"
   },
   "devDependencies": {
-    "jscs": "^3.0.7"
+    "chai": "^4.1.2",
+    "chai-fs": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^4.3.1",
+    "gulp-notify": "^3.0.0",
+    "jscs": "^3.0.7",
+    "path": "^0.12.7",
+    "watch": "^1.0.2"
   }
 }
