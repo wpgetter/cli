@@ -4,6 +4,7 @@ let jshint = require('gulp-jshint');
 let mocha  = require('gulp-mocha');
 let notify = require('gulp-notify');
 let path   = require('path');
+var player = require('play-sound')(opts = {});
 
 let jsFiles = ['**/*.js', '!./node_modules/**'];
 
@@ -17,16 +18,22 @@ gulp.task('jscs', function () {
   gulp.src(jsFiles)
     .pipe(jscs())
     .pipe(jscs.reporter())
-    .pipe(notify( function (file) {
-      if (file.jscs.success) {
-        return false;
-      }
+    .pipe(notify({
+      message: (file) => {
+        if (file.jscs.success) {
+          return false;
+        }
 
-      let errors = file.jscs.errors._errorList.map(function (data) {
-        return `(${data.line}:${data.column}) ${data.message}`;
-      }).join('\n');
-      return `${file.relative} (${file.jscs.errorCount} errors)\n${errors}`;
-    }));
+        player.play('beep.wav');
+        let errors = file.jscs.errors._errorList.map(function (data) {
+          return `(${data.line}:${data.column}) ${data.message}`;
+        }).join('\n');
+        return `${file.relative} (${file.jscs.errorCount} errors)\n${errors}`;
+      },
+
+      icon: path.join(__dirname, 'icon.png'),
+    }))
+  ;
 });
 
 // Check JavaScript.
@@ -49,7 +56,7 @@ gulp.task('jshint', function () {
 });
 
 // Run tests.
-gulp.task('test', function() {
+gulp.task('test', function () {
   gulp.src(['test/test-*.js'])
     .pipe(mocha())
     .pipe(notify(function (file) {

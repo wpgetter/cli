@@ -1,32 +1,18 @@
-let chai    = require('chai');
-let homeDir = require('home-dir');
-let shell   = require('shelljs');
-
-let expect = chai.expect;
+let chai            = require('chai');
+let homeDir         = require('home-dir');
+let init            = require('../lib/init.js');
+let reset           = require('../lib/reset.js');
+let expect          = chai.expect;
+let wpgetterHomeDir = homeDir('/.wpgetter');
 
 chai.use(require('chai-fs'));
 
-let init  = require('../lib/init.js');
-let reset = require('../lib/reset.js');
+let test = () => reset.parse().then(init.parse);
 
-let wpgetterHomeDir = homeDir('/.wpgetter');
-
-describe('wpgetter', function () {
-
-  /**
-   * Test init.
-   */
-  describe('init', function () {
-    it('should create wpgetter home directory', function () {
-      reset.parse().then(function () {
-        init.parse().then(function () {
-          expect(wpgetterHomeDir).to.be.a.directory();
-        }).catch(function () {
-          process.exit(255);
-        });
-      }).catch(function () {
-        process.exit(255);
-      });
-    });
-  });
-});
+describe('wpgetter', () =>
+  describe('init', () =>
+    it('should create wpgetter home directory', () => test()
+      .then(() => expect(wpgetterHomeDir).to.be.a.directory())
+    )
+  )
+);

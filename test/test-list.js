@@ -1,21 +1,16 @@
-let chai    = require('chai');
-let homeDir = require('home-dir');
-
+let chai   = require('chai');
 let expect = chai.expect;
 
-let list  = require('../lib/list.js');
+let list = require('../lib/list.js');
 
-let wpgetterHomeDir = homeDir('/.wpgetter')
+describe('wpgetter', () => {
+  describe('list', () => {
 
-describe('wpgetter', function () {
-  describe('list', function () {
-    it('should have no result for inexistent theme or plugin', function () {
-      let args = ['name', 'unlikely-to-have-ever-existed'];
-      list.parse(args).then(function (items) {
-        expect(items).to.have.lengthOf(0);
-      }).catch(function () {
-        process.exit(255);
-      });
-    });
+    let test = Promise.resolve(list.parse(['name', 'unlikely-to-have-ever-existed']));
+
+    it('should have no result for inexistent software', () => test
+      .then(result => expect(result).to.have.a.lengthOf(0))
+      .catch(error => {throw error;})
+    );
   });
 });
