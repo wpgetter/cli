@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 let program = require('commander');
-let term    = require('terminal-kit').terminal;
 
 let list = require('./lib/list.js');
 
