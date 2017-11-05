@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp test",
-    "coverage": "istanbul cover _mocha lib/*.js"
+    "coverage": "istanbul cover _mocha test/*.js"
   },
   "bin": {
     "wpgetter": "cli.js",
