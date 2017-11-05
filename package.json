@@ -6,6 +6,11 @@
   "scripts": {
     "test": "gulp test"
   },
+  "config": {
+    "blanket": {
+      "pattern": "lib"
+    }
+  },
   "bin": {
     "wpgetter": "cli.js",
     "wpget": "cli.js",
@@ -33,6 +38,7 @@
     "terminal-kit": "^1.13.13"
   },
   "devDependencies": {
+    "blanket": "^1.2.3",
     "chai": "^4.1.2",
     "chai-fs": "^1.0.0",
     "gulp": "^3.9.1",
