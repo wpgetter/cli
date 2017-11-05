@@ -9,10 +9,8 @@ chai.use(require('chai-fs'));
 
 let test = () => reset.parse().then(init.parse);
 
-describe('wpgetter', () =>
-  describe('init', () =>
-    it('should create wpgetter home directory', () => test()
-      .then(() => expect(wpgetterHomeDir).to.be.a.directory())
-    )
+describe('init', () =>
+  it('should create wpgetter home directory', () => test()
+    .then(() => expect(wpgetterHomeDir).to.be.a.directory())
   )
 );
