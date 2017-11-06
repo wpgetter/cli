@@ -8,8 +8,16 @@ let expect = chai.expect;
 let run = require('../lib/run.js');
 
 describe('run', function () {
-  it('should exit with non-0 code for inexistent sub-command', function () {
-    let exitCode = shell.exec('node cli.js inexistent').code;
-    expect(exitCode).to.not.equal('0');
+  it('should return false for inexistent sub-command', function () {
+    expect(run.parse([])).to.be.false;
+  });
+  it('should return false for inexistent sub-command using cli.js', function () {
+    expect(run.parse(['cli.js'])).to.be.false;
+  });
+  it('should return true for and existing sub-command', function () {
+    expect(run.parse(['list'])).to.be.true;
+  });
+  it('should return true for and existing sub-command using cli.js', function () {
+    expect(run.parse(['cli.js', 'list'])).to.be.true;
   });
 });

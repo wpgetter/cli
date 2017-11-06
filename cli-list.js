@@ -7,3 +7,5 @@ program
   .option('-v, --vendor [type]', 'Filter by vendor, e.g. "woocommerce"')
   .parse(process.argv)
 ;
+
+list.parse(program.args);

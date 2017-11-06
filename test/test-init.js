@@ -7,7 +7,11 @@ let wpgetterHomeDir = homeDir('/.wpgetter');
 
 chai.use(require('chai-fs'));
 
-let test = () => reset.parse().then(init.parse);
+beforeEach(() => function() {
+	reset.parse();
+});
+
+let test = init.parse;
 
 describe('init', () =>
   it('should create wpgetter home directory', () => test()

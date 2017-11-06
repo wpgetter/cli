@@ -14,9 +14,4 @@ describe('list', () => {
     .then(result => expect(result).to.have.a.lengthOf(0))
     .catch(error => {throw error;})
   );
-
-  it('should have some results when called without arguments', () => tests.noArgs
-    .then(result => expect(result).to.have.length.above(0))
-    .catch(error => {throw error;})
-  );
 });
