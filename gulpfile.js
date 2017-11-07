@@ -20,7 +20,7 @@ gulp.task('debug-beep', () => beep());
 
 // Watch JavaScript files.
 gulp.task('watch', ['jshint', 'jscs', 'test', 'coverage'], function () {
-  gulp.watch(jsFiles, ['jshint', 'jscs', 'test']);
+  gulp.watch(jsFiles, ['jshint', 'jscs', 'test', 'coverage']);
 });
 
 // Check JavaScript.
@@ -92,9 +92,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('coverage', function () {
-
   shell.exec('npm run coverage');
-
 });
 
 gulp.task('default', ['watch']);

@@ -12,12 +12,13 @@ program
 
 list.parse(program.args).then(function (items) {
   let itemsArr = [['Plugin', 'Latest Version', 'Vendor']];
-  items.map(function(item) {
-    itemsArr.push( [
+  items.map(function (item) {
+    itemsArr.push([
       `${jp.value(item, '$..name')} (${jp.value(item, '$..slug')})`,
       jp.value(item, '$..versions[0].number'),
       jp.value(item, '$..vendor'),
     ]);
   });
+
   console.log(table(itemsArr));
 });
