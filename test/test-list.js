@@ -15,8 +15,8 @@ describe('list', () => {
     .catch(error => {throw error;})
   );
 
-  // it('should have no result for inexistent software', () => tests.inexistent
-  //   .then(result => expect(result).to.have.a.lengthOf(0))
-  //   .catch(error => {throw error;})
-  // );
+  it('should have no result for inexistent software', () => tests.inexistent
+    .then(result => expect(result).to.have.a.lengthOf(0))
+    .catch(error => {throw error;})
+  );
 });
