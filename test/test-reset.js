@@ -5,8 +5,8 @@ let assert = chai.assert;
 
 chai.use(require('chai-fs'));
 
-let init  = require('../lib/init.js');
-let reset = require('../lib/reset.js');
+let init  = require('../src/init.js');
+let reset = require('../src/reset.js');
 
 let wpgetterHomeDir = homeDir('/.wpgetter');
 

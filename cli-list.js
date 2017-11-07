@@ -3,7 +3,7 @@ let jp      = require('jsonpath');
 let program = require('commander');
 let table   = require('table').table;
 
-let list = require('./lib/list.js');
+let list = require('./src/list.js');
 
 program
   .option('-v, --vendor [type]', 'Filter by vendor, e.g. "woocommerce"')

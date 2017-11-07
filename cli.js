@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 let program = require('commander');
 
-let init = require('./lib/init.js');
-let run  = require('./lib/run.js');
+let init = require('./src/init.js');
+let run  = require('./src/run.js');
 
 program
   .version('1.0.1')

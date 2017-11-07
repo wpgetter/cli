@@ -1,7 +1,7 @@
 let chai   = require('chai');
 let expect = chai.expect;
 
-let list = require('../lib/list.js');
+let list = require('../src/list.js');
 
 describe('list', () => {
 

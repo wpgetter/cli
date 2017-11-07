@@ -4,7 +4,7 @@ let chai    = require('chai');
 
 let expect = chai.expect;
 
-let run = require('../lib/run.js');
+let run = require('../src/run.js');
 
 describe('run', function () {
   it('should return false for inexistent sub-command', function () {
