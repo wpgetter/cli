@@ -26,11 +26,15 @@
   },
   "homepage": "https://gitlab.com/wpgetter/wpgetter-cli#README",
   "dependencies": {
+    "chalk": "^2.3.0",
     "commander": "^2.11.0",
     "del": "^3.0.0",
     "home-dir": "^1.0.0",
+    "istanbul": "^0.4.5",
+    "jsonpath": "^1.0.0",
     "mkdirp-promise": "^5.0.1",
     "shelljs": "^0.7.8",
+    "table": "^4.0.2",
     "terminal-kit": "^1.13.13"
   },
   "devDependencies": {

@@ -1,16 +1,16 @@
 let beep     = () => require('play-sound')().play('beep.wav');
 let debug    = require('gulp-debug');
 let gulp     = require('gulp');
+let gulpEach = require('gulp-foreach');
 let jscs     = require('gulp-jscs');
 let jshint   = require('gulp-jshint');
 let mocha    = require('gulp-mocha');
 let notify   = require('gulp-notify');
 let notifier = require('node-notifier');
 let path     = require('path');
-let player   = require('play-sound')();
-let gulpEach = require('gulp-foreach');
+let shell    = require('shelljs');
 
-let jsFiles = ['**/*.js', '!./node_modules/**'];
+let jsFiles = ['**/*.js', '!./coverage/**', '!./node_modules/**'];
 
 // List JavaScript files.
 gulp.task('debug-js-list', () => gulp.src(jsFiles).pipe(debug()));
@@ -19,7 +19,7 @@ gulp.task('debug-js-list', () => gulp.src(jsFiles).pipe(debug()));
 gulp.task('debug-beep', () => beep());
 
 // Watch JavaScript files.
-gulp.task('watch', ['jshint', 'jscs', 'test'], function () {
+gulp.task('watch', ['jshint', 'jscs', 'test', 'coverage'], function () {
   gulp.watch(jsFiles, ['jshint', 'jscs', 'test']);
 });
 
@@ -89,6 +89,12 @@ gulp.task('test', function () {
         })
       ;
     }));
+});
+
+gulp.task('coverage', function () {
+
+  shell.exec('npm run coverage');
+
 });
 
 gulp.task('default', ['watch']);

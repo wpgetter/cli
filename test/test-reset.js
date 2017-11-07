@@ -1,6 +1,5 @@
 let chai    = require('chai');
 let homeDir = require('home-dir');
-let shell   = require('shelljs');
 
 let assert = chai.assert;
 

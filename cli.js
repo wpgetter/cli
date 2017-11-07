@@ -14,6 +14,6 @@ program
 /**
  * Run command.
  */
-init.parse().then(function () {
-  run.parse(program.args);
-});
+init.parse()
+  .then(() => run.parse(program.args))
+;

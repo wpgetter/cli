@@ -7,8 +7,8 @@ let wpgetterHomeDir = homeDir('/.wpgetter');
 
 chai.use(require('chai-fs'));
 
-beforeEach(() => function() {
-	reset.parse();
+beforeEach(() => function () {
+  reset.parse();
 });
 
 let test = init.parse;
