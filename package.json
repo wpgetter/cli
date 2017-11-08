@@ -1,6 +1,6 @@
 {
   "name": "wpgetter-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "WP Getter CLI",
   "main": "index.js",
   "scripts": {
