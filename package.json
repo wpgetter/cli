@@ -1,5 +1,5 @@
 {
-  "name": "wpgetter-cli",
+  "name": "wpgetter",
   "version": "1.0.3",
   "description": "WP Getter CLI",
   "main": "index.js",
