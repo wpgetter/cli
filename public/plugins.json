@@ -10,6 +10,17 @@
 					"published_at": 1507289361
 				}
 			]
+		},
+		{
+			"name": "Zeecommerce Subscriptions",
+			"slug": "zeecommerce-subscriptions",
+			"vendor": "zeethemes",
+			"versions" : [
+				{
+					"number": "2.2.12",
+					"published_at": 1507289361
+				}
+			]
 		}
 	]
 }

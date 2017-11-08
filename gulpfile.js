@@ -13,14 +13,14 @@ let shell    = require('shelljs');
 let jsFiles = ['**/*.js', '!./coverage/**', '!./node_modules/**'];
 
 // List JavaScript files.
-gulp.task('debug-js-list', () => gulp.src(jsFiles).pipe(debug()));
+gulp.task('debug-js-files', () => gulp.src(jsFiles).pipe(debug()));
 
 // List JavaScript files.
 gulp.task('debug-beep', () => beep());
 
 // Watch JavaScript files.
-gulp.task('watch', ['jshint', 'jscs', 'test', 'coverage'], function () {
-  gulp.watch(jsFiles, ['jshint', 'jscs', 'test', 'coverage']);
+gulp.task('watch', ['debug-js-files'], function () {
+  gulp.watch(jsFiles, ['jshint', 'jscs', 'test']);
 });
 
 // Check JavaScript.

@@ -1,16 +1,25 @@
 #!/usr/bin/env node
+let log = console.log;
+
 let jp      = require('jsonpath');
 let program = require('commander');
 let table   = require('table').table;
 
-let list = require('./src/list.js');
+let list    = require('./src/list.js');
 
 program
-  .option('-v, --vendor [type]', 'Filter by vendor, e.g. "woocommerce"')
+  .option('-n, --name [name]', 'Filter by name, e.g. "Subscriptions"')
+  .option('-v, --vendor [vendor]', 'Filter by vendor, e.g. "woothemes"')
   .parse(process.argv)
 ;
 
-list.parse(program.args).then(function (items) {
+let filters = {
+  name: program.name,
+  vendor: program.vendor,
+};
+
+list.parse(filters).then(function (items) {
+
   let itemsArr = [['Plugin', 'Latest Version', 'Vendor']];
   items.map(function (item) {
     itemsArr.push([
@@ -20,5 +29,9 @@ list.parse(program.args).then(function (items) {
     ]);
   });
 
-  console.log(table(itemsArr));
+  if (itemsArr.length > 1) {
+    log(table(itemsArr));
+  } else {
+    log('Nothing found.');
+  }
 });
