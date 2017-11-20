@@ -3,9 +3,8 @@ let jp = require('jsonpath');
 
 exports = module.exports = {};
 
-exports.parse = function (filters) {
+exports.parse = function (filters, plugins = require('../public/plugins.json').plugins) {
   return new Promise(function (resolve, reject) {
-    plugins = require('../public/plugins.json').plugins;
 
     if (typeof filters.name === 'string') {
       plugins = jp.query(plugins, `$..[?(@.name=="${filters.name}")]`);
