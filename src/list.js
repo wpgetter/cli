@@ -1,19 +1,40 @@
 /* jshint node: true */
-let jp = require('jsonpath');
+let compareVersions = require('compare-versions');
+
+let textualFilters = ['name', 'vendor'];
 
 exports = module.exports = {};
 
 exports.parse = function (filters, plugins = require('../public/plugins.json').plugins) {
+
   return new Promise(function (resolve, reject) {
 
-    if (typeof filters.name === 'string') {
-      plugins = jp.query(plugins, `$..[?(@.name=="${filters.name}")]`);
+    /**
+     * Apply textual filters.
+     */
+    let applyTextualFilter = (plugins, filter, value) => plugins.filter((item) => {
+      let itemValueUC   = item[filter].toUpperCase();
+      let filterValueUC = value.toUpperCase();
+      return itemValueUC.indexOf(filterValueUC) !== -1;
+    });
+    for (let i = textualFilters.length - 1; i >= 0; i--) {
+      let filter = textualFilters[i];
+      if (typeof filters[filter] === 'string') {
+        plugins = applyTextualFilter(plugins, filter, filters[filter]);
+      }
     }
 
-    if (typeof filters.vendor === 'string') {
-      plugins = jp.query(plugins, `$..[?(@.vendor=="${filters.vendor}")]`);
+    /**
+     * Sort versions, newer first.
+     */
+    let sortByNewestVersion = (a, b) => compareVersions(a.number, b.number) < 0;
+    for (let i = plugins.length - 1; i >= 0; i--) {
+      plugins[i].versions.sort(sortByNewestVersion);
     }
 
+    /**
+     * Done.
+     */
     resolve(plugins);
   });
 };

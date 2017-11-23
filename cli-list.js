@@ -20,12 +20,16 @@ let filters = {
 
 list.parse(filters).then(function (items) {
 
-  let itemsArr = [['Plugin', 'Latest Version', 'Vendor']];
+  let itemsArr = [['Plugin', 'Latest Version', 'Handle `vendor/slug`']];
   items.map(function (item) {
+    let name    = jp.value(item, '$..name');
+    let slug    = jp.value(item, '$..slug');
+    let vendor  = jp.value(item, '$..vendor');
+    let version = jp.value(item, '$..versions[0].number');
     itemsArr.push([
-      `${jp.value(item, '$..name')} (${jp.value(item, '$..slug')})`,
-      jp.value(item, '$..versions[0].number'),
-      jp.value(item, '$..vendor'),
+      name,
+      version,
+      `${vendor}/${slug}@${version}`,
     ]);
   });
 

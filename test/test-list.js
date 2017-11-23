@@ -3,6 +3,8 @@ let expect = chai.expect;
 
 let list = require('../src/list.js');
 
+let time = Math.floor(Date.now());
+
 let plugins = [
   {
     name: 'The Test',
@@ -10,8 +12,20 @@ let plugins = [
     vendor: 'Acme',
     versions: [
       {
-        number: '1.2.3',
-        published_at: 1500000000,
+        number: '1.0.0',
+        published_at: time - 1000 + 100,
+      },
+      {
+        number: '1.0.1',
+        published_at: time - 1000 + 101,
+      },
+      {
+        number: '2.0.0',
+        published_at: time - 1000 + 200,
+      },
+      {
+        number: '9.9.9',
+        published_at: time - 1000 + 999,
       },
     ],
   },
@@ -19,15 +33,14 @@ let plugins = [
 
 describe('list', () => {
 
-  let randomString = Math.random().toString(36).substr(2, 5);
-
   let tests = {
     noArgs: Promise.resolve(list.parse({}, plugins)),
-    inexistentName: Promise.resolve(list.parse({ name: `name-${randomString}` }, plugins)),
-    inexistentVendor: Promise.resolve(list.parse({ vendor: `vendor-${randomString}` }, plugins)),
+    inexistentName: Promise.resolve(list.parse({ name: `whatever` }, plugins)),
+    inexistentVendor: Promise.resolve(list.parse({ vendor: `whatever` }, plugins)),
     name: Promise.resolve(list.parse({ name: 'The Test' }, plugins)),
     vendor: Promise.resolve(list.parse({ vendor: 'Acme' }, plugins)),
     nameAndVendor: Promise.resolve(list.parse({ name: 'The Test', vendor: 'Acme' }, plugins)),
+    newestVersion: Promise.resolve(list.parse({}, plugins)),
   };
 
   it('should have results', () => tests.noArgs
@@ -55,8 +68,8 @@ describe('list', () => {
     .catch(error => {throw error;})
   );
 
-  it('should have 1 result for name and vendor', () => tests.name
-    .then(result => expect(result).to.have.a.lengthOf(1))
+  it('should return newest version (9.9.9)', () => tests.newestVersion
+    .then(result => expect(result[0].versions[0].number).to.equal('9.9.9'))
     .catch(error => {throw error;})
   );
 });
